@@ -11,7 +11,7 @@
         body {
             padding: 0;
             margin: 0;
-            background-color: #e4d7d7;
+            background-color: #d7e4db;
             font-family: 'Ubuntu', sans-serif;
 
         }
@@ -42,7 +42,7 @@
         .card {
             width: 20%;
             height: 20%;
-            background-color: #d6bfbf;
+            background-color: #cad6bf;
             margin: 10px;
             padding: 5px;
             text-align: center;
@@ -52,7 +52,7 @@
 
         .card:hover {
             transition: all 0.5s ease;
-            box-shadow: 5px 5px 5px #d19898;
+            box-shadow: 5px 5px 5px #9aaa8c;
         }
 
         .card h5 {
@@ -64,11 +64,71 @@
 
         .fa-trash {
             font-size: 30px;
-            color: #b92a2a;
+            color: #7da35b;
             margin: 78px 3px 7px 3px;
         }
 
-       
+        .main {
+            border-radius: 12px;
+            box-shadow: 0px 11px 35px 2px rgb(0 0 0 / 14%);
+            align-items: center;
+            background-color: #cad6bf;
+            height: auto;
+            padding: 10px 8px 2px 8px;
+            margin: 20px 30%;
+          }
+
+          input {
+            margin: 10px 5px;
+            border: 2px solid gray;
+            background: transparent;
+            border-radius: 6px;
+            padding: 7px;
+          }
+      
+          .type-2 {
+            border-radius: 6px;
+            background-color: #9aaa8c;
+            border: 0;
+            box-shadow: 0 0 4px rgb(0 0 0 / 30%);
+            transition: .3s box-shadow;
+            padding: 7px 13px;
+            margin: 10px 5px;
+            display: block;
+            width: 10%;
+            font-size: 16px;
+            font-weight: 550;
+            transition: all 0.5s ease;
+          }
+      
+          .type-2:hover {
+            transition: all 0.5s ease;
+            box-shadow: 5px 5px 5px #90aa78;
+          }
+          .head{
+            border: 2px solid #ff0000;
+            padding: 10px;
+            margin: 10px;
+            display: flex;
+            flex-direction: row;
+        }
+        .head h6{
+            font-weight: 700;
+            font-size: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        .head .logout{
+            font-weight: 700;
+            font-size: 22px;
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+            color: #ff0000;
+            border: 1px solid #0000ff;
+            float: right;
+        }
+
     </style>
 </head>
 
@@ -76,19 +136,21 @@
     <div class="container">
         <div class="head">
             {% if name %}
-            Welcome {{name}}
+            <h6>
+                Welcome {{name}}
+            </h6>
             {% endif %}
-            <a href="{% url 'LOGOUT' %}" class="nav-item nav-link" style="padding: 5px 3px;">
+            <a href="{% url 'LOGOUT' %}" class="logout" style="padding: 5px 3px;">
                 LogOut
             </a>
         </div>
-        <div class="box">
+        <div class="main">
             <form method="POST">
                 {% csrf_token %}
                 <div class="insideBox">
                     <input name="title" class="field" type="text" placeholder="Title">
                     <input name="note" class="field" type="text" name="text" placeholder="Enter your note here">
-                    <input type="submit" value="+">
+                    <input class="type-2" type="submit" value="ADD">
                 </div>
             </form>
         </div>
