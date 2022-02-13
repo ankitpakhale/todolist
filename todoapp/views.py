@@ -59,6 +59,11 @@ def userLogin(request):
 def dashboard(request):
     if 'email' in request.session:
         user = signUp.objects.get(email=request.session['email'])
+        
+        card = TodoList.objects.filter(owner__email=user)
+        print(card.title)
+        print(card.description)
+            
         if request.POST:
             title = request.POST['title']
             print(title)
@@ -70,8 +75,7 @@ def dashboard(request):
             db.description = note        
             db.save()
             
-            card = TodoList.objects.get(owner__email=user)
-        return render(request, 'dashboard.html', {'name': user.name, 'card' : card})
+        return render(request, 'dashboard.html', {'name': user.name})
     return redirect('LOGIN')
 
 def userLogOut(request):
