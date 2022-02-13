@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CA2 Login</title>
+
+    <style>
+
+        body {
+            background-color: #e4d7d7;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .main {
+            background-color: #FFFFFF;
+            width: 400px;
+            height: 400px;
+            margin: 7em auto;
+            border-radius: 1.5em;
+            box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+        }
+
+        .sign {
+            padding-top: 40px;
+            color: #002153;
+            font-family: 'Ubuntu', sans-serif;
+            font-weight: bold;
+            font-size: 23px;
+        }
+
+        .un {
+            width: 76%;
+            color: rgb(38, 50, 56);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: rgba(136, 126, 126, 0.04);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: 2px solid rgba(0, 0, 0, 0.02);
+            margin-bottom: 50px;
+            margin-left: 46px;
+            text-align: center;
+            margin-bottom: 27px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        form.form1 {
+            padding-top: 40px;
+        }
+
+        .pass {
+            width: 76%;
+            color: rgb(38, 50, 56);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            background: rgba(136, 126, 126, 0.04);
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+            box-sizing: border-box;
+            border: 2px solid rgba(0, 0, 0, 0.02);
+            margin-bottom: 50px;
+            margin-left: 46px;
+            text-align: center;
+            margin-bottom: 27px;
+            font-family: 'Ubuntu', sans-serif;
+        }
+
+        .un:focus,
+        .pass:focus {
+            border: 2px solid rgba(0, 0, 0, 0.18) !important;
+
+        }
+
+        .submit {
+            cursor: pointer;
+            border-radius: 5em;
+            color: #fff;
+            background: linear-gradient(to right, #9C27B0, #E040FB);
+            border: 0;
+            padding-left: 40px;
+            padding-right: 40px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            font-family: 'Ubuntu', sans-serif;
+            margin-left: 35%;
+            font-size: 13px;
+            box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+        }
+
+
+        a {
+            text-shadow: 0px 0px 3px rgba(117, 117, 117, 0.12);
+            text-decoration: none;
+            color: #002153;
+        }
+        .col-sm-12 p{
+            font-size: 12px;
+            margin: 3px 16px;
+        }
+        .col-sm-12 a{
+            font-size: 16px;
+            margin: 12px 16px;
+        }
+        .col-sm-12 h5 .login{
+            font-size: 16px;
+            margin: 12px 16px;
+            font-size: 19px; 
+            color: #01B3E4;
+        }
+
+        /* --------------------------- */
+        .type-2 {   
+            border-radius: 6px;
+            background-color: #D4A2A2;
+            border: 0;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+            transition: .3s box-shadow;
+            padding: 7px 13px;
+            margin: 10px auto;
+            display: block;
+            width: 20%;
+            font-size: 16px;
+            font-weight: 550;
+            transition: all 0.5s ease;
+        }
+        
+        .type-2:hover {
+            transition: all 0.5s ease;
+            box-shadow: 5px 5px 5px #e4d7d7;
+            /* border: 1px solid #D4A2A2; */
+        }
+        /* --------------------------- */
+        .col-sm-12 h5 a{
+            font-size: 19px;
+        }
+        
+        </style>
+
+</head>
+
+<body>
+
+    <div class="main">
+        <p class="sign" align="center">Login2</p>
+        <form class="form1" method="POST">
+            {% csrf_token %}
+
+            <input id="email" type="text" name="email" placeholder="*Email" data-error="Valid email is required."
+                class="un" align="center" required="required" data-error="Valid email is required.">
+            <div class="help-block with-errors"></div>
+
+            <input id="password" type="password" name="password" align="center" class="pass"
+                placeholder="*Password" required="required">
+            <div class="help-block with-errors"></div>
+
+            <input class="type-2" type="submit" value="Login">
+
+            <div class="col-sm-12">
+                <a>Not a User ?<br></a>
+                <h5>
+                    <a href="{% url 'SIGNUP2' %}">
+                        Go for SignUp
+                    </a>
+                </h5>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>
