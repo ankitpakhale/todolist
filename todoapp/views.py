@@ -6,7 +6,10 @@ from .models import *
 # Create your views here.
 
 def test(request):
-    return HttpResponse("Working properly..............")
+    if 'email' in request.session:
+        user = signUp.objects.get(email=request.session['email'])
+        return render(request, 'dashboard.html', {'name': user.name})
+    return redirect('LOGIN')
 
 def userSignUp(request):
     if request.POST:
@@ -44,23 +47,22 @@ def userLogin(request):
     if request.POST:
         em = request.POST.get('email')
         pass1 = request.POST.get('password')
-        try:
-            check = signUp.objects.get(email = em)
-            print("Email is ",em)
-            if check.password == pass1:
-                request.session['email'] = check.email
-                nameMsg = signUp.objects.all()
-                print('User logged in')
-                # return redirect('HOME')
-                return render(request,'home.html', {'key':nameMsg})
-            else:
-                msg = 'Invalid Password'
-                return render(request , 'wrongPassword.html',{'msg':msg}) 
-        # except(NameError):
-        #     return render(request, '404-error-page.html')
-        # except(TemplateDoesNotExist):
-        #     return render(request, '404-error-page.html')
-        except:
-            msg = 'Invalid Email ID'
-            return render(request,'wrongPassword.html', {'msg':msg})
+      
+        print("Inside first try block", em)
+        check = signUp.objects.get(email = em)
+        print("Email is ",em)
+        if check.password == pass1:
+            request.session['email'] = check.email
+            print(f'{check.name} Successfully logged in')
+            return redirect('TEST')
+        else:
+            return HttpResponse('Invalid Password')
     return render(request,'login.html')
+
+
+
+
+def userLogOut(request):
+    del request.session['email']
+    print('User logged out')
+    return redirect('LOGIN')
