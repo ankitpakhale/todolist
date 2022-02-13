@@ -1,71 +1,66 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.http import HttpResponse
+from .models import *
 # Create your views here.
 
 def test(request):
     return HttpResponse("Working properly..............")
 
-def SignupView(request):
+def userSignUp(request):
     if request.POST:
-       
         Name = request.POST['name']
+        print(Name)
         Email = request.POST['email']
-        
+        print(Email)
+        Number = request.POST['number']
+        print(Number)
         Password = request.POST['password']
+        print(Password)
         ConfirmPassword = request.POST['confirmPassword']
+        print(ConfirmPassword)
+
         try:
-            data = UserDetails2.objects.filter(email=Email)
-            if data:
-                msg = "Email already registered"
-                return render(request, 'signup.html', {'msg': msg})
-            elif ConfirmPassword == Password:
-                v = UserDetails2()
+            if ConfirmPassword == Password:
+                v = signUp()
                 v.name = Name
                 v.email = Email
-                
+                v.number = Number
                 v.password = Password
+                v.confirmPassword = ConfirmPassword
                 v.save()
-                print(f"{v.name} Signed up successfully")
-                
-                # getting IPV6 and FE80 address
-                # print(netifaces.interfaces())
-                # addrs = netifaces.ifaddresses('eno1')
-                # # print(addrs)
-                # x = addrs.get(10)
-                # # (x[0])
-                # global_add = x[0].get('addr')
-                # print(global_add)
-                # link_local = x[2].get('addr')
-                # link_local = link_local.replace("%eno1","" )
-                # print(link_local)
-                # i.ipaddress = global_add+':'+link_local
-                IPV6 = requests.get("https://api6.ipify.org", timeout=5).text
-                i = IP()
-                i.ipaddress = IPV6
-                i.save()
-                # return HttpResponse(global_add, link_local)
-
-                return redirect('LOGIN2')
+                return redirect('LOGIN')
             else:
-                msg = 'Please Enter Same Password'
+                msg = 'Enter Same Password'
                 return render(request , 'signup.html',{'msg':msg}) 
+
         finally:
             messages.success(request, 'Signup Successfully Done...')
+
     return render(request,'signup.html')
 
 def userLogin(request):
     if request.POST:
         em = request.POST.get('email')
         pass1 = request.POST.get('password')
-      
-        print("Inside first try block", em)
-        check = UserDetails2.objects.get(email = em)
-        print("Email is ",em)
-        if check.password == pass1:
-            request.session['email'] = check.email
-            print(f'{check.name} Successfully logged in')
-            return redirect('DASHBOARD2')
-        else:
-            return HttpResponse('Invalid Password')
+        try:
+            check = signUp.objects.get(email = em)
+            print("Email is ",em)
+            if check.password == pass1:
+                request.session['email'] = check.email
+                nameMsg = signUp.objects.all()
+                print('User logged in')
+                # return redirect('HOME')
+                return render(request,'home.html', {'key':nameMsg})
+            else:
+                msg = 'Invalid Password'
+                return render(request , 'wrongPassword.html',{'msg':msg}) 
+        # except(NameError):
+        #     return render(request, '404-error-page.html')
+        # except(TemplateDoesNotExist):
+        #     return render(request, '404-error-page.html')
+        except:
+            msg = 'Invalid Email ID'
+            return render(request,'wrongPassword.html', {'msg':msg})
     return render(request,'login.html')
