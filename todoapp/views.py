@@ -5,12 +5,6 @@ from django.http import HttpResponse
 from .models import *
 # Create your views here.
 
-def dashboard(request):
-    if 'email' in request.session:
-        user = signUp.objects.get(email=request.session['email'])
-        return render(request, 'dashboard.html', {'name': user.name})
-    return redirect('LOGIN')
-
 def userSignUp(request):
     if request.POST:
         Name = request.POST['name']
@@ -47,23 +41,6 @@ def userLogin(request):
     if request.POST:
         em = request.POST.get('email')
         pass1 = request.POST.get('password')
-      
-        print("Inside first try block", em)
-        check = signUp.objects.get(email = em)
-        print("Email is ",em)
-        if check.password == pass1:
-            request.session['email'] = check.email
-            print(f'{check.name} Successfully logged in')
-            return redirect('DASHBOARD')
-        else:
-            return HttpResponse('Invalid Password')
-    return render(request,'login.html')
-
-
-def userLogin(request):
-    if request.POST:
-        em = request.POST.get('email')
-        pass1 = request.POST.get('password')
         try:
             check = signUp.objects.get(email = em)
             print("Email is ",em)
@@ -79,7 +56,15 @@ def userLogin(request):
             return render(request,'login.html', {'msg':msg})
     return render(request,'login.html')
 
+def dashboard(request):
+    if 'email' in request.session:
+        user = signUp.objects.get(email=request.session['email'])
+                
+        
+        return render(request, 'dashboard.html', {'name': user.name})
+    return redirect('LOGIN')
+
 def userLogOut(request):
     del request.session['email']
-    print('User logged out')
+    print('User successfully logged out')
     return redirect('LOGIN')
