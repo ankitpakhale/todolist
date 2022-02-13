@@ -16,8 +16,8 @@
         }
 
         .card{
-            width: 100px;
-            height: 100px;
+            width: 220px;
+            height: 220px;
             background-color: rgb(199, 199, 199);
         }
       
@@ -44,10 +44,12 @@
             </form>
         </div>
 
+        {% for i in allCards %}
         <div class="card">
-            <h5>{{title}}</h5>
-            <p>{{note}}</p>
+                <h5>{{i.t1}}</h5>
+                <p>{{i.n1}}</p>
         </div>
+        {% endfor %}
     </div>
 </body>
 

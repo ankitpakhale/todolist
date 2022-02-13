@@ -70,7 +70,8 @@ def dashboard(request):
             db.description = note        
             db.save()
             
-        return render(request, 'dashboard.html', {'name': user.name})
+            card = TodoList.objects.get()
+        return render(request, 'dashboard.html', {'name': user.name, 'card' : card})
     return redirect('LOGIN')
 
 def userLogOut(request):
