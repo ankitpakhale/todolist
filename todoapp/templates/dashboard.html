@@ -66,6 +66,11 @@
             font-size: 30px;
             color: #7da35b;
             margin: 78px 3px 7px 3px;
+            transition: all 0.5s ease;
+        }
+        .fa-trash:hover {
+            color: #ff0000;
+            transition: all 0.5s ease;
         }
 
         .main {
@@ -106,27 +111,27 @@
             box-shadow: 5px 5px 5px #90aa78;
           }
           .head{
-            border: 2px solid #ff0000;
             padding: 10px;
             margin: 10px;
-            display: flex;
-            flex-direction: row;
+            
+            
         }
         .head h6{
             font-weight: 700;
             font-size: 30px;
             margin: 0;
             padding: 0;
+            color: #6a8651;
         }
         .head .logout{
             font-weight: 700;
             font-size: 22px;
-            margin: 0;
+            margin: -36px 6px 0px 2px;
             padding: 0;
             text-decoration: none;
             color: #ff0000;
-            border: 1px solid #0000ff;
             float: right;
+
         }
 
     </style>
@@ -148,8 +153,8 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="insideBox">
-                    <input name="title" class="field" type="text" placeholder="Title">
-                    <input name="note" class="field" type="text" name="text" placeholder="Enter your note here">
+                    <input required name="title" class="field" type="text" placeholder="Title">
+                    <input required name="note" class="field" type="text" name="text" placeholder="Enter your note here">
                     <input class="type-2" type="submit" value="ADD">
                 </div>
             </form>
