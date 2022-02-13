@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse
 from .models import *
@@ -73,9 +73,23 @@ def dashboard(request):
             db.description = note  
             db.owner = user      
             db.save()
-            
+        
         return render(request, 'dashboard.html', {'name': user.name, 'card': card})
     return redirect('LOGIN')
+
+def deletecard(request, pk):
+    query = TodoList.objects.get(pk=id)
+    query.delete()
+    return HttpResponse("Deleted!")
+
+
+def deletecard(request,pk):
+    if 'email' in request.session:
+        prod= get_object_or_404(TodoList, pk=pk)   
+        prod.delete() 
+        return(redirect('DASHBOARD'))
+    return redirect('LOGIN')
+
 
 def userLogOut(request):
     del request.session['email']

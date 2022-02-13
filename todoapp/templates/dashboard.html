@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Todo Dashboard</title>
     <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
         .insideBox{
             display: flex;
             flex-direction: column;
@@ -14,13 +19,31 @@
             justify-content: center;
             align-items: center;
         }
-
+        
+        .fields{
+            display: flex;
+        }
         .card{
             width: 220px;
             height: 220px;
             background-color: rgb(199, 199, 199);
+            margin: 10px;
+            padding: 5px;
+            text-align: center;
+            border-radius: 5px;
+            transition: all 0.5s ease;
         }
-      
+        .card:hover{
+            transition: all 0.5s ease;
+            box-shadow: 5px 5px 5px #dfdfdf;            
+        }
+        .card h5{
+            font-size:30px;
+            font-weight:bold;
+            padding: 10px;
+            margin: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -44,12 +67,16 @@
             </form>
         </div>
 
-        {% for i in card %}
-        <div class="card">
+        <div class="fields">
+            {% for i in card %}
+            <div class="card">
                 <h5>{{i.title}}</h5>
                 <p>{{i.description}}</p>
+                <a href="{% url 'delete-card' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+
     </div>
 </body>
 
