@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from .models import *
 # Create your views here.
 
-def test(request):
+def dashboard(request):
     if 'email' in request.session:
         user = signUp.objects.get(email=request.session['email'])
         return render(request, 'dashboard.html', {'name': user.name})
@@ -54,13 +54,30 @@ def userLogin(request):
         if check.password == pass1:
             request.session['email'] = check.email
             print(f'{check.name} Successfully logged in')
-            return redirect('TEST')
+            return redirect('DASHBOARD')
         else:
             return HttpResponse('Invalid Password')
     return render(request,'login.html')
 
 
-
+def userLogin(request):
+    if request.POST:
+        em = request.POST.get('email')
+        pass1 = request.POST.get('password')
+        try:
+            check = signUp.objects.get(email = em)
+            print("Email is ",em)
+            if check.password == pass1:
+                request.session['email'] = check.email
+                print('User successfully logged in')
+                return redirect('DASHBOARD')
+            else:
+                msg = 'Invalid Password'
+                return render(request , 'login.html',{'msg':msg}) 
+        except:
+            msg = 'Invalid Email ID'
+            return render(request,'login.html', {'msg':msg})
+    return render(request,'login.html')
 
 def userLogOut(request):
     del request.session['email']
