@@ -8,44 +8,70 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Todo Dashboard</title>
     <style>
-        body{
+        body {
             padding: 0;
             margin: 0;
+            background-color: #e4d7d7;
+            font-family: 'Ubuntu', sans-serif;
+
         }
-        .insideBox{
+
+        .container {
+            width: 100%;
+            height: auto;
+
+        }
+
+        .insideBox {
             display: flex;
             flex-direction: column;
-            
+
             justify-content: center;
             align-items: center;
         }
-        
-        .fields{
+
+        .fields {
             display: flex;
+            flex-direction: row;
+            flex-flow: wrap;
+            box-sizing: border-box;
+            justify-content:space-around;
+            
         }
-        .card{
-            width: 220px;
-            height: 220px;
-            background-color: rgb(199, 199, 199);
+
+        .card {
+            width: 20%;
+            height: 20%;
+            background-color: #d6bfbf;
             margin: 10px;
             padding: 5px;
             text-align: center;
             border-radius: 5px;
             transition: all 0.5s ease;
         }
-        .card:hover{
+
+        .card:hover {
             transition: all 0.5s ease;
-            box-shadow: 5px 5px 5px #dfdfdf;            
+            box-shadow: 5px 5px 5px #d19898;
         }
-        .card h5{
-            font-size:30px;
-            font-weight:bold;
+
+        .card h5 {
+            font-size: 30px;
+            font-weight: bold;
             padding: 10px;
             margin: 5px;
         }
 
+        .fa-trash {
+            font-size: 30px;
+            color: #b92a2a;
+            margin: 78px 3px 7px 3px;
+        }
+
+       
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="head">
@@ -60,8 +86,8 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="insideBox">
-                    <input name = "title" class="field" type="text" placeholder="Title">
-                    <input name = "note" class="field" type="text" name="text" placeholder="Enter your note here">
+                    <input name="title" class="field" type="text" placeholder="Title">
+                    <input name="note" class="field" type="text" name="text" placeholder="Enter your note here">
                     <input type="submit" value="+">
                 </div>
             </form>
@@ -72,7 +98,7 @@
             <div class="card">
                 <h5>{{i.title}}</h5>
                 <p>{{i.description}}</p>
-                <a href="{% url 'delete-card' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                <a class="delete" href="{% url 'delete-card' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
             </div>
             {% endfor %}
         </div>

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 # Create your views here.
 
@@ -73,15 +73,10 @@ def dashboard(request):
             db.description = note  
             db.owner = user      
             db.save()
+            return HttpResponseRedirect('http://127.0.0.1:8000/todo/dash/')
         
         return render(request, 'dashboard.html', {'name': user.name, 'card': card})
     return redirect('LOGIN')
-
-def deletecard(request, pk):
-    query = TodoList.objects.get(pk=id)
-    query.delete()
-    return HttpResponse("Deleted!")
-
 
 def deletecard(request,pk):
     if 'email' in request.session:
