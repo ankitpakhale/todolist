@@ -6,11 +6,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo Dashboard</title>
-</head>
+    <style>
+        .insideBox{
+            display: flex;
+            flex-direction: column;
+            
+            justify-content: center;
+            align-items: center;
+        }
 
+        .card{
+            width: 100px;
+            height: 100px;
+            background-color: rgb(199, 199, 199);
+        }
+      
+    </style>
+</head>
 <body>
     <div class="container">
-
         <div class="head">
             {% if name %}
             Welcome {{name}}
@@ -19,9 +33,21 @@
                 LogOut
             </a>
         </div>
-        <h1>
-            Working properly..............
-        </h1>
+        <div class="box">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="insideBox">
+                    <input name = "title" class="field" type="text" placeholder="Title">
+                    <input name = "note" class="field" type="text" name="text" placeholder="Enter your note here">
+                    <input type="submit" value="+">
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h5>{{title}}</h5>
+            <p>{{note}}</p>
+        </div>
     </div>
 </body>
 

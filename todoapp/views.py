@@ -59,8 +59,17 @@ def userLogin(request):
 def dashboard(request):
     if 'email' in request.session:
         user = signUp.objects.get(email=request.session['email'])
-                
-        
+        if request.POST:
+            title = request.POST['title']
+            print(title)
+            note = request.POST['note']
+            print(note)
+            
+            db = TodoList()
+            db.title = title
+            db.description = note        
+            db.save()
+            
         return render(request, 'dashboard.html', {'name': user.name})
     return redirect('LOGIN')
 
