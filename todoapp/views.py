@@ -63,17 +63,33 @@ def dashboard(request):
         if request.POST:
             title = request.POST['title']
             print(title)
-            note = request.POST['note']
-            print(note)
+            description = request.POST['description']
+            print(description)
             db = TodoList()
             db.title = title
-            db.description = note  
+            db.description = description  
             db.owner = user      
             db.save()
             return HttpResponseRedirect('http://127.0.0.1:8000/todo/dash/')
+
         card = TodoList.objects.filter(owner=user)
+
         return render(request, 'dashboard.html', {'name': user.name, 'card': card})
     return redirect('LOGIN')
+
+def updatecard(request, pk):
+    if 'email' in request.session:
+        az = TodoList.objects.get(id = pk)
+
+        if request.POST:
+            az.title = request.POST['title']
+            az.description = request.POST['description']
+            az.save()
+            return redirect('DASHBOARD') 
+        return render(request, 'dashboard.html', {'az': az})
+
+    return redirect('LOGIN')
+
 
 def deletecard(request,pk):
     if 'email' in request.session:

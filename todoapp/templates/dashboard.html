@@ -63,7 +63,7 @@
             padding: 10px;
             margin: 5px auto;
         }
-        
+
         .card p {
             padding: 10px;
             margin: 5px auto;
@@ -178,31 +178,27 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="insideBox">
-                    <input required name="title" class="field" type="text" placeholder="Title">
-                    <input required name="note" class="field" type="text" name="text"
-                        placeholder="Enter your note here">
-
+                    <input required name="title" class="field" type="text" placeholder="Title" value="{{az.title}}">
+                    <input required name="description" class="field" type="text" name="text"
+                        placeholder="Enter your note here" value="{{az.description}}">
                     <input class="type-2" type="submit" value="ADD">
                 </div>
             </form>
         </div>
 
+       
+
 
         <div class="fields">
             {% for i in card %}
             <div class="card">
-
-                <form >
-
-                    <i class="fa fa-solid fa-pen-fancy" aria-hidden="true"></i>
-                
-                </form>
-
-                <h5>{{i.title}}</h5>
-
-                <p>{{i.description}}</p>
-
+                <a  href="{% url 'update-card' i.id %}"><i class="fa fa-solid fa-pen-fancy"
+                        aria-hidden="true"></i>
+                    <h5>{{i.title}}</h5>
+                    <p>{{i.description}}</p>
+                </a>
                 <a class="delete" href="{% url 'delete-card' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
             </div>
             {% endfor %}
         </div>
