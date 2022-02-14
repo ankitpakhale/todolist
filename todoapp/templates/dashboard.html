@@ -61,12 +61,18 @@
             font-size: 30px;
             font-weight: bold;
             padding: 10px;
-            margin: 5px auto;
+            /* margin: 5px auto; */
+            margin: 5px 2px 2px 56px;
         }
 
         .card p {
             padding: 10px;
             margin: 5px auto;
+        }
+        .card a{
+            text-decoration: none;
+            color: #000;
+            /* float: right; */
         }
 
         .main {
@@ -129,6 +135,13 @@
             text-decoration: none;
             color: #ff0000;
             float: right;
+            transition: all 0.5s ease;
+
+        }
+
+        .head .logout:hover {
+            color: #b80101;
+            transition: all 0.5s ease;
 
         }
 
@@ -151,10 +164,11 @@
             transition: all 0.5s ease;
             opacity: 0.45;
             font-size: 22px;
-            margin: 10px auto;
+            margin: 13px auto;
+            float: right;
         }
 
-        .fa-pen-fancy:hover {
+        .fa-pen-fancy:hover {    
             transition: all 0.5s ease;
             opacity: 1;
         }
@@ -186,13 +200,11 @@
             </form>
         </div>
 
-       
-
 
         <div class="fields">
             {% for i in card %}
             <div class="card">
-                <a  href="{% url 'update-card' i.id %}"><i class="fa fa-solid fa-pen-fancy"
+                <a  href="{% url 'update-card' i.id %}" alt="edit"><i class="fa fa-solid fa-pen-fancy"
                         aria-hidden="true"></i>
                     <h5>{{i.title}}</h5>
                     <p>{{i.description}}</p>

@@ -80,13 +80,15 @@ def dashboard(request):
 def updatecard(request, pk):
     if 'email' in request.session:
         az = TodoList.objects.get(id = pk)
+        user = signUp.objects.get(email=request.session['email'])
+        card = TodoList.objects.filter(owner = user)
 
         if request.POST:
             az.title = request.POST['title']
             az.description = request.POST['description']
             az.save()
             return redirect('DASHBOARD') 
-        return render(request, 'dashboard.html', {'az': az})
+        return render(request, 'dashboard.html', {'az': az, 'name': user.name, 'card': card})
 
     return redirect('LOGIN')
 
