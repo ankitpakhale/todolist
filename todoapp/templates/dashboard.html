@@ -48,7 +48,7 @@
             margin: 10px;
             padding: 5px;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 12px;
             transition: all 0.5s ease;
         }
 
@@ -69,7 +69,8 @@
             padding: 10px;
             margin: 5px auto;
         }
-        .card a{
+
+        .card a {
             text-decoration: none;
             color: #000;
             /* float: right; */
@@ -102,7 +103,7 @@
             padding: 7px 13px;
             margin: 10px 5px;
             display: block;
-            width: 10%;
+            width: auto;
             font-size: 16px;
             font-weight: 550;
             transition: all 0.5s ease;
@@ -124,7 +125,7 @@
             font-size: 30px;
             margin: 0;
             padding: 0;
-            color: #6a8651;
+            color: #6A8651;;
         }
 
         .head .logout {
@@ -168,9 +169,47 @@
             float: right;
         }
 
-        .fa-pen-fancy:hover {    
+        .fa-pen-fancy:hover {
             transition: all 0.5s ease;
             opacity: 1;
+        }
+
+        .blank {
+            text-align: center;
+            /* margin: 8% 5px; */
+            color: #6A8651;;
+            font-size: 20px;
+        }
+
+        .box {
+            background: #CAD6BF;
+            margin: auto;
+            margin-top: 3%;
+            margin-bottom: 3%;
+            max-width: 30%;
+            padding: 20px 50px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+        }
+
+        .box:hover {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            animation-name: example;
+            animation-duration: 0.25s;
+            border-left: 8px solid transparent;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        textarea {
+            background: transparent !important;
+            width: 80%;
+            margin: 10px 5px;
+            border: 2px solid gray;
+            background: transparent;
+            border-radius: 6px;
+            padding: 7px;
+            
         }
     </style>
 </head>
@@ -184,27 +223,29 @@
             </h6>
             {% endif %}
             <a href="{% url 'LOGOUT' %}" class="logout" style="padding: 5px 3px;">
-                LogOut
+                logout
             </a>
         </div>
 
-        <div class="main">
+        <div class="box">
             <form method="POST">
                 {% csrf_token %}
                 <div class="insideBox">
                     <input required name="title" class="field" type="text" placeholder="Title" value="{{az.title}}">
-                    <input required name="description" class="field" type="text" name="text"
-                        placeholder="Enter your note here" value="{{az.description}}">
+                    <input required name="description" class="field" type="text" name="text" placeholder="Enter your description here" value="{{az.description}}">
+                    <!-- <textarea required name="description" class="field" type="text" name="text" placeholder="Enter your description here" value="{{az.description}}"></textarea> -->
+
                     <input class="type-2" type="submit" value="ADD">
                 </div>
             </form>
         </div>
 
 
+        {% if card %}
         <div class="fields">
             {% for i in card %}
             <div class="card">
-                <a  href="{% url 'update-card' i.id %}" alt="edit"><i class="fa fa-solid fa-pen-fancy"
+                <a href="{% url 'update-card' i.id %}" alt="edit"><i class="fa fa-solid fa-pen-fancy"
                         aria-hidden="true"></i>
                     <h5>{{i.title}}</h5>
                     <p>{{i.description}}</p>
@@ -214,6 +255,15 @@
             </div>
             {% endfor %}
         </div>
+
+        {% else %}
+
+        <!-- <h3 class="blank">Sorry, you don't have any card in your Dashboard</h3> -->
+        <div class="box">
+            <h1 class="blank">Sorry, you don't have any card in your Dashboard</h1>
+        </div>
+
+        {% endif %}
 
     </div>
 </body>
