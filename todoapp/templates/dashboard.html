@@ -48,7 +48,7 @@
             margin: 10px;
             padding: 5px;
             text-align: center;
-            border-radius: 5px;
+            border-radius: 12px;
             transition: all 0.5s ease;
         }
 
@@ -69,7 +69,8 @@
             padding: 10px;
             margin: 5px auto;
         }
-        .card a{
+
+        .card a {
             text-decoration: none;
             color: #000;
             /* float: right; */
@@ -168,24 +169,82 @@
             float: right;
         }
 
-        .fa-pen-fancy:hover {    
+        .fa-pen-fancy:hover {
             transition: all 0.5s ease;
             opacity: 1;
         }
 
-        .blank{
+        .blank {
             text-align: center;
             margin: 8% 5px;
             color: #6A8651;
-            font-size: 30px;
+            font-size: 20px;
             transition: all 0.5s ease;
         }
 
-        .blank:hover{
+        /* .blank:hover{
             color: #7da35b;
             transition: all 0.5s ease;
+        } */
+
+
+
+        .box {
+            background: #CAD6BF;
+            margin: auto;
+            margin-top: 5%;
+            max-width: 30%;
+            padding: 20px 50px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+            transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
         }
 
+        .box:hover {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            animation-name: example;
+            animation-duration: 0.25s;
+            border-left: 8px solid transparent;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        }
+
+        button {
+            border: none;
+            background: #9AAA8C;
+            color: #f0f0f2;
+            border-radius: 12px;
+            padding: 5px;
+        }
+
+        button:hover {
+            border-right: 2px solid black;
+        }
+
+        h1 {
+            text-transform: uppercase;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        @keyframes example {
+            0% {
+                border-left: 2px solid transparent;
+            }
+
+            25% {
+                border-left: 3px solid transparent;
+            }
+
+            50% {
+                border-left: 4px solid transparent;
+            }
+
+            100% {
+                border-left: 5px solid transparent;
+            }
+        }
     </style>
 </head>
 
@@ -219,7 +278,7 @@
         <div class="fields">
             {% for i in card %}
             <div class="card">
-                <a  href="{% url 'update-card' i.id %}" alt="edit"><i class="fa fa-solid fa-pen-fancy"
+                <a href="{% url 'update-card' i.id %}" alt="edit"><i class="fa fa-solid fa-pen-fancy"
                         aria-hidden="true"></i>
                     <h5>{{i.title}}</h5>
                     <p>{{i.description}}</p>
@@ -232,8 +291,10 @@
 
         {% else %}
 
-        <h3 class="blank">Sorry, you don't have any card in your Dashboard</h3>
-
+        <!-- <h3 class="blank">Sorry, you don't have any card in your Dashboard</h3> -->
+        <div class="box">
+            <h1 class="blank">Sorry, you don't have any card in your Dashboard</h1>
+        </div>
         {% endif %}
 
     </div>
