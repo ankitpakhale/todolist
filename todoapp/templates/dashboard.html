@@ -172,6 +172,20 @@
             transition: all 0.5s ease;
             opacity: 1;
         }
+
+        .blank{
+            text-align: center;
+            margin: 8% 5px;
+            color: #6A8651;
+            font-size: 30px;
+            transition: all 0.5s ease;
+        }
+
+        .blank:hover{
+            color: #7da35b;
+            transition: all 0.5s ease;
+        }
+
     </style>
 </head>
 
@@ -218,7 +232,7 @@
 
         {% else %}
 
-        <h3 class="sign">Sorry, you don't have any card in your Dashboard</h3>
+        <h3 class="blank">Sorry, you don't have any card in your Dashboard</h3>
 
         {% endif %}
 
