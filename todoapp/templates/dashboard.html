@@ -201,6 +201,7 @@
         </div>
 
 
+        {% if card %}
         <div class="fields">
             {% for i in card %}
             <div class="card">
@@ -214,6 +215,12 @@
             </div>
             {% endfor %}
         </div>
+
+        {% else %}
+
+        <h3 class="sign">Sorry, you don't have any card in your Dashboard</h3>
+
+        {% endif %}
 
     </div>
 </body>

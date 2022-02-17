@@ -70,7 +70,7 @@ def dashboard(request):
             db.description = description  
             db.owner = user      
             db.save()
-            return HttpResponseRedirect('http://127.0.0.1:8000/todo/dash/')
+            return HttpResponseRedirect('http://127.0.0.1:8000/')
 
         card = TodoList.objects.filter(owner=user)
 
