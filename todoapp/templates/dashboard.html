@@ -103,7 +103,7 @@
             padding: 7px 13px;
             margin: 10px 5px;
             display: block;
-            width: 10%;
+            width: auto;
             font-size: 16px;
             font-weight: 550;
             transition: all 0.5s ease;
@@ -176,18 +176,10 @@
 
         .blank {
             text-align: center;
-            margin: 8% 5px;
+            /* margin: 8% 5px; */
             color: #6A8651;
             font-size: 20px;
-            transition: all 0.5s ease;
         }
-
-        /* .blank:hover{
-            color: #7da35b;
-            transition: all 0.5s ease;
-        } */
-
-
 
         .box {
             background: #CAD6BF;
@@ -209,6 +201,16 @@
             box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
         }
 
+        textarea {
+            background: transparent !important;
+            width: 80%;
+            margin: 10px 5px;
+            border: 2px solid gray;
+            background: transparent;
+            border-radius: 6px;
+            padding: 7px;
+            
+        }
     </style>
 </head>
 
@@ -221,7 +223,7 @@
             </h6>
             {% endif %}
             <a href="{% url 'LOGOUT' %}" class="logout" style="padding: 5px 3px;">
-                LogOut
+                logout
             </a>
         </div>
 
@@ -230,8 +232,8 @@
                 {% csrf_token %}
                 <div class="insideBox">
                     <input required name="title" class="field" type="text" placeholder="Title" value="{{az.title}}">
-                    <input required name="description" class="field" type="text" name="text"
-                        placeholder="Enter your note here" value="{{az.description}}">
+                    <input required name="description" class="field" type="text" name="text" placeholder="Enter your description here" value="{{az.description}}">
+                    <!-- <textarea required name="description" class="field" type="text" name="text" placeholder="Enter your description here" value="{{az.description}}"></textarea> -->
                     <input class="type-2" type="submit" value="ADD">
 
                 </div>
@@ -260,7 +262,7 @@
         <div class="box">
             <h1 class="blank">Sorry, you don't have any card in your Dashboard</h1>
         </div>
-        
+
         {% endif %}
 
     </div>
