@@ -83,6 +83,8 @@ def updatecard(request, pk):
         user = signUp.objects.get(email=request.session['email'])
         card = TodoList.objects.filter(owner = user)
 
+        print(card)
+
         if request.POST:
             az.title = request.POST['title']
             az.description = request.POST['description']

@@ -49,11 +49,11 @@
             padding: 5px;
             text-align: center;
             border-radius: 12px;
-            transition: all 0.5s ease;
+            transition: all 0.3s ease;
         }
 
         .card:hover {
-            transition: all 0.5s ease;
+            transition: all 0.3s ease;
             box-shadow: 5px 5px 5px #9aaa8c;
         }
 
@@ -125,7 +125,8 @@
             font-size: 30px;
             margin: 0;
             padding: 0;
-            color: #6A8651;;
+            color: #6A8651;
+            ;
         }
 
         .head .logout {
@@ -199,18 +200,24 @@
             animation-duration: 0.25s;
             border-left: 8px solid transparent;
             box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-            
+
         }
 
         textarea {
             background: transparent !important;
-            width: 80%;
+
             margin: 10px 5px;
             border: 2px solid gray;
-            background: transparent;
             border-radius: 6px;
             padding: 7px;
-            
+
+            height: 70px; 
+            min-height: 20px; 
+
+            width: 400px; 
+            max-width: 450px;
+            min-width: 250px;
+
         }
     </style>
 </head>
@@ -221,7 +228,7 @@
             {% if name %}
             <h6>
                 Welcome {{name}}
-                
+
             </h6>
             {% endif %}
             <a href="{% url 'LOGOUT' %}" class="logout" style="padding: 5px 3px;">
@@ -234,8 +241,9 @@
                 {% csrf_token %}
                 <div class="insideBox">
                     <input required name="title" class="field" type="text" placeholder="Title" value="{{az.title}}">
-                    <input required name="description" class="field" type="text" name="text" placeholder="Enter your description here" value="{{az.description}}">
-                    <!-- <textarea required name="description" class="field" type="text" name="text" placeholder="Enter your description here" value="{{az.description}}"></textarea> -->
+                    <input required name="description" class="field" type="text" placeholder="Enter your description here" value="{{az.description}}">
+                    
+                    <!-- <textarea required name="description" class="field" type="text" placeholder="Enter your description here" value="{{az.description}}"></textarea> -->
 
                     <input class="type-2" type="submit" value="ADD">
                 </div>
