@@ -67,10 +67,10 @@ def dashboard(request):
             description = request.POST['description']
             print(description)
             if len(title) >= 100:
-                messages.error(request, 'Title is greater than 100 characters')
+                messages.error(request, 'Title should be less than or equal to 100 characters')
 
             if len(description) >= 1000:
-                messages.error(request, 'Description is greater than 1000 characters')
+                messages.error(request, 'Description should be less than or equal to 1000 characters')  
 
             if len(title) <= 100 and len(description) <= 1000:
                 db = TodoList()
