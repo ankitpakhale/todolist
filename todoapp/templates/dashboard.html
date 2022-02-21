@@ -50,6 +50,7 @@
             text-align: center;
             border-radius: 12px;
             transition: all 0.3s ease;
+            
         }
 
         .card:hover {
@@ -63,11 +64,14 @@
             padding: 10px;
             /* margin: 5px auto; */
             margin: 5px 2px 2px 56px;
+
         }
 
         .card p {
             padding: 10px;
             margin: 5px auto;
+            text-justify: distribute-all-lines;
+            text-align: justify;
         }
 
         .card a {
@@ -126,7 +130,7 @@
             margin: 0;
             padding: 0;
             color: #6A8651;
-            ;
+            
         }
 
         .head .logout {
@@ -219,7 +223,6 @@
             min-width: 250px;
 
         }
-
     </style>
 </head>
 
@@ -253,6 +256,15 @@
             </form>
         </div>
 
+        {% if messages %}
+        <div class="box">
+            {% for message in messages %}
+            <h1 class="blank">
+                {{ message }}
+            </h1>
+            {% endfor %}
+        </div>
+        {% endif %}
 
         {% if card %}
         <div class="fields">
@@ -269,24 +281,17 @@
             {% endfor %}
         </div>
 
-        {% elif messages %}
+
+        {% else %}
+        <!-- <h3 class="blank">Sorry, you don't have any card in your Dashboard</h3> -->
         <div class="box">
-            {% for message in messages %}
-            <h1 class="blank">
-                {{ message }}
-            </h1>
-            {% endfor %}
+            <h1 class="blank">Sorry, you don't have any card in your Dashboard</h1>
+
         </div>
 
-    </div>
+        {% endif %}
 
-    {% else %}
-    <!-- <h3 class="blank">Sorry, you don't have any card in your Dashboard</h3> -->
-    <div class="box">
-        <h1 class="blank">Sorry, you don't have any card in your Dashboard</h1>
-    </div>
-
-    {% endif %}
+       
 
     </div>
 </body>
