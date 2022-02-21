@@ -211,14 +211,15 @@
             border-radius: 6px;
             padding: 7px;
 
-            height: 70px; 
-            min-height: 20px; 
+            height: 70px;
+            min-height: 20px;
 
-            width: 400px; 
+            width: 400px;
             max-width: 450px;
             min-width: 250px;
 
         }
+
     </style>
 </head>
 
@@ -240,12 +241,12 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="insideBox">
+                    <!-- <input required name="title" maxlength="100" class="field" type="text" placeholder="Title" value="{{az.title}}"> -->
                     <input required name="title" class="field" type="text" placeholder="Title" value="{{az.title}}">
                     <!-- <input required name="description" class="field" type="text" placeholder="Enter your description here" value="{{az.description}}"> -->
-                    
-                    <textarea required name="description" class="field" type="text" placeholder="Enter your description here">
-                        {{az.description}}
-                    </textarea>
+
+                    <textarea required name="description" class="field" type="text"
+                        placeholder="Enter your description here">{{az.description}}</textarea>
 
                     <input class="type-2" type="submit" value="ADD">
                 </div>
@@ -268,14 +269,24 @@
             {% endfor %}
         </div>
 
-        {% else %}
-
-        <!-- <h3 class="blank">Sorry, you don't have any card in your Dashboard</h3> -->
+        {% elif messages %}
         <div class="box">
-            <h1 class="blank">Sorry, you don't have any card in your Dashboard</h1>
+            {% for message in messages %}
+            <h1 class="blank">
+                {{ message }}
+            </h1>
+            {% endfor %}
         </div>
 
-        {% endif %}
+    </div>
+
+    {% else %}
+    <!-- <h3 class="blank">Sorry, you don't have any card in your Dashboard</h3> -->
+    <div class="box">
+        <h1 class="blank">Sorry, you don't have any card in your Dashboard</h1>
+    </div>
+
+    {% endif %}
 
     </div>
 </body>

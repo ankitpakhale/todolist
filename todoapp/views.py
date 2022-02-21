@@ -3,6 +3,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
+
 # Create your views here.
 
 def userSignUp(request):
@@ -65,11 +66,19 @@ def dashboard(request):
             print(title)
             description = request.POST['description']
             print(description)
-            db = TodoList()
-            db.title = title
-            db.description = description  
-            db.owner = user      
-            db.save()
+            if len(title) >= 100:
+                messages.error(request, 'Title is greater than 100 characters')
+
+            if len(description) >= 1000:
+                messages.error(request, 'Description is greater than 1000 characters')
+
+            if len(title) <= 100 and len(description) <= 1000:
+                db = TodoList()
+                db.title = title
+                db.description = description  
+                db.owner = user      
+                db.save()
+            
             return HttpResponseRedirect('http://127.0.0.1:8000/')
 
         card = TodoList.objects.filter(owner=user)
