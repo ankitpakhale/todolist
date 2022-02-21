@@ -17,7 +17,20 @@
             background-color: #d7e4db;
             font-family: monospace, 'Ubuntu', sans-serif;
 
+            height: 100vh;
+            overflow-y: auto;
         }
+        
+        body::-webkit-scrollbar {
+            width: 6px;
+            background-color: #a5be8e;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background-color: #7da35b;
+            border-radius: 10px;
+        }
+
 
         .container {
             width: 100%;
@@ -69,7 +82,18 @@
             padding: 10px;
             /* margin: 5px auto; */
             margin: 5px 2px 2px 56px;
+            height: 10vh;
+            overflow-y: auto;
+        }
 
+        .card h5::-webkit-scrollbar {
+            width: 6px;
+            background-color: #a5be8e;
+        }
+
+        .card h5::-webkit-scrollbar-thumb {
+            background-color: #7da35b;
+            border-radius: 10px;
         }
 
         .card p {
@@ -77,6 +101,7 @@
             margin: 5px auto;
             text-justify: distribute-all-lines;
             text-align: justify;
+
             height: 25vh;
             overflow-y: auto;
 
@@ -85,21 +110,23 @@
         }
 
         .card p::-webkit-scrollbar {
-            width: 5px;
+            width: 6px;
+            background-color: #a5be8e;
         }
+
         .card p::-webkit-scrollbar-thumb {
             background-color: #7da35b;
             border-radius: 10px;
-            opacity: 0.45;
         }
 
         textarea::-webkit-scrollbar {
-            width: 5px;
+            width: 6px;
+            background-color: #a5be8e;
         }
+
         textarea::-webkit-scrollbar-thumb {
             background-color: #7da35b;
             border-radius: 10px;
-            opacity: 0.45;
         }
 
         .card a {
@@ -124,6 +151,7 @@
             background: transparent;
             border-radius: 6px;
             padding: 7px;
+            width: 60%;
         }
 
         .type-2 {
@@ -298,9 +326,10 @@
         <div class="fields">
             {% for i in card %}
             <div class="card">
-                <a href="{% url 'update-card' i.id %}" alt="edit"><i class="fa fa-solid fa-pen-fancy" aria-hidden="true"></i></a>
-                    <h5>{{i.title}}</h5>
-                    <p>{{i.description}}</p>
+                <a href="{% url 'update-card' i.id %}" alt="edit"><i class="fa fa-solid fa-pen-fancy"
+                        aria-hidden="true"></i></a>
+                <h5>{{i.title}}</h5>
+                <p>{{i.description}}</p>
                 <a class="delete" href="{% url 'delete-card' i.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
 
             </div>
